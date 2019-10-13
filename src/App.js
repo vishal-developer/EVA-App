@@ -34,9 +34,9 @@ class App extends React.Component {
 				endDate: 'End Date',
 				endDateValue: '',
 				duration: 'Duration',
-				durationValue: 'Duration',
+				durationValue: '',
 				activityCost: 'Activity Cost',
-				activityValue: ''
+				activityCostValue: ''
 			});
 			return {list};
 		});
@@ -52,9 +52,21 @@ class App extends React.Component {
 	}
 
 	handleOnChange = (e, item, textboxName) => {
-		console.log("e :"+e);
-		console.log("item :"+item.id);
-		console.log("textboxName :"+textboxName);
+		this.setState( state => {
+			const list = state.itemList.map((listItem) =>{
+				if(listItem === item){
+					if(textboxName === 'Activity Name'){
+						listItem.activityValue = e;
+					}else if(textboxName === 'Duration'){
+						listItem.durationValue = e;
+					}else if(textboxName === 'Activity Cost'){
+						listItem.activityCostValue = e;
+					}
+				}
+				return listItem;
+			});
+			return {list};
+		});
 	}
 
 	render(){
@@ -76,8 +88,7 @@ class App extends React.Component {
 
 		        <CustomButton label = {'Add Activity'} clickHandle={this.handleButtonClick} />
 		        <CustomButton label = {'Show Report '} clickHandle={this.showReport} />
-		        <ReportPanel>
-		        </ReportPanel>
+		        <ReportPanel itemList = {this.state.itemList} />
 
 		      </div>
 		);
