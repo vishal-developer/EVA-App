@@ -24,9 +24,9 @@ class CustomTextBox extends React.Component{
 			    <TextField
 			        id="projectName"
 			        label= {this.props.label}
-			        value = {this.state.value}
+			        value = {this.props.value}
 			        margin="normal"
-			        onChange = {this.handleOnChange}>
+			        onChange = {(e) => this.props.handleOnChange(e.target.value)}>
 			   	</TextField>
 			</div>
 		)

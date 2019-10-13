@@ -6,18 +6,22 @@ import CustomButton from './CustomButton'
 
 class CustomListItem extends React.Component{
 	
-
-	
-
 	render(){
 		return this.props.itemList.map(item =>(
 			<div className='Activity-panel'>
-            	<CustomTextBox label = {item.activityName}/>
-            	<CustomDatePicker label = {item.startDate}/>
-            	<CustomDatePicker label = {item.endDate}/>
-            	<CustomTextBox label = {item.duration}/>
-            	<CustomTextBox label = {item.activityCost}/>
-            	<CustomButton label = {'Delete'} item = {item} clickHandle = { this.props.handleDelete.bind(this, item) }/>
+            	<CustomTextBox label = {item.activityName}
+            	handleOnChange = {(e) => this.props.handleOnChange(e, item, item.activityName)}/>
+
+            	<CustomDatePicker label = {item.startDate} />
+            	<CustomDatePicker label = {item.endDate} />
+            	
+            	<CustomTextBox label = {item.duration} 
+            	handleOnChange = {(e) => this.props.handleOnChange(e, item, item.duration)}/>
+            	
+            	<CustomTextBox label = {item.activityCost} 
+            	handleOnChange = {(e) => this.props.handleOnChange(e, item, item.activityCost)}/>
+
+            	<CustomButton label = {'Delete'} clickHandle = { this.props.handleDelete.bind(this, item) }/>
             </div>
 		))
 	}

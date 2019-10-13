@@ -5,6 +5,7 @@ import CustomButton from './component/CustomButton';
 import CustomDatePicker from './component/CustomDatePicker';
 import CustomListItem from './component/CustomListItem';
 import HeaderPanel from './component/HeaderPanel';
+import ReportPanel from './component/ReportPanel';
 // list
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -13,7 +14,9 @@ import ListItem from '@material-ui/core/ListItem';
 class App extends React.Component {
 
 	state = {
-		itemList : []
+		itemList : [],
+		project : '',
+		Currancy : ''
 	}
 	
 	handleButtonClick = (e) => {
@@ -41,6 +44,17 @@ class App extends React.Component {
 
 	handleDelete = (item) => {
 		console.log(item);
+		this.setState({ itemList: [...this.state.itemList.filter(listItem => listItem !== item)]});	
+	}
+
+	showReport = (e) => {
+		console.log(this.state.itemList);
+	}
+
+	handleOnChange = (e, item, textboxName) => {
+		console.log("e :"+e);
+		console.log("item :"+item.id);
+		console.log("textboxName :"+textboxName);
 	}
 
 	render(){
@@ -55,10 +69,15 @@ class App extends React.Component {
 		        </div>
 
 		        <List>
-		            <CustomListItem itemList = {this.state.itemList} handleDelete = {this.handleDelete}/>
+		            <CustomListItem itemList = {this.state.itemList} 
+		            handleDelete = {this.handleDelete}
+		            handleOnChange = {this.handleOnChange}/>
 		        </List>
 
 		        <CustomButton label = {'Add Activity'} clickHandle={this.handleButtonClick} />
+		        <CustomButton label = {'Show Report '} clickHandle={this.showReport} />
+		        <ReportPanel>
+		        </ReportPanel>
 
 		      </div>
 		);
