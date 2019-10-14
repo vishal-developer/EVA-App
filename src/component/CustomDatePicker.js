@@ -15,6 +15,7 @@ class CustomDatePicker extends React.Component{
 	}
 
 	handleDateChange = (e) => {
+		this.props.handleDateChange(e);
 		return this.setState({selectedDate: e});
   	}
 	
@@ -22,7 +23,7 @@ class CustomDatePicker extends React.Component{
 		return (
 			<div>
    				<MuiPickersUtilsProvider utils={DateFnsUtils}>
-      				<Grid container>
+      				<Grid container  justify="space-around">
    						<KeyboardDatePicker
 				          disableToolbar
 				          variant="normal"

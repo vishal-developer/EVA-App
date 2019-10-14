@@ -1,5 +1,5 @@
 .App {
-  /*text-align: center;*/
+  text-align: center;
 }
 
 .App-logo {
@@ -8,11 +8,11 @@
 
 .App-header {
   /*background-color: #282c34;  */
-  /*min-height: 100vh;*/
+  min-height: 100vh;
   padding: 20px;
-  display: flex-start;
+  display: flex;
   flex-direction: column;
-  justify-content: center;
+  /*justify-content: flex-start;*/
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -20,7 +20,7 @@
 .Activity-panel {
   padding: 20px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: space-around;
   flex-wrap: wrap;
