@@ -8,7 +8,7 @@ import Select from '@material-ui/core/Select';
 
 
 
-class CurrencyList extends React.Component{
+class CustomList extends React.Component{
 
 	constructor(props){
 		super(props)
@@ -27,15 +27,16 @@ class CurrencyList extends React.Component{
 	render(){
 		return (
 			 <div>
-			 <InputLabel htmlFor="Currency">Select Currency</InputLabel>
+			<InputLabel htmlFor="Currency">{this.props.listLabel}</InputLabel>
+			<div className = {marginTop}></div>
 			<Select 
 			value={this.state.selectValue}
 			onChange = {this.handleSelectOnChange}>
 			 <MenuItem value="none">
-	           <em>None</em>
+	           None
 	         </MenuItem>
 				{
-					this.props.currencyList.map(item => (
+					this.props.itemList.map(item => (
 						<MenuItem value={item}>{item}</MenuItem>
 					))
 				}
@@ -46,5 +47,10 @@ class CurrencyList extends React.Component{
 	}
 }
 
+const marginTop = {
+	height: '10px',
+	marginTop: '100px'
+}
 
-export default CurrencyList;
+
+export default CustomList;

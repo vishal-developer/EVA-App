@@ -6,15 +6,15 @@ import CustomDatePicker from './component/CustomDatePicker';
 import CustomListItem from './component/CustomListItem';
 import HeaderPanel from './component/HeaderPanel';
 
-import CurrencyList from './component/CurrencyList';
+import CustomList from './component/CustomList';
 import ActivityPage from './pages/ActivityPage';
 // list
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+// card
+import Card from '@material-ui/core/Card';
 
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
-
-
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 class App extends React.Component {
 
@@ -39,30 +39,36 @@ class App extends React.Component {
 	}
 
 	handleSelectOnChange = (e) => {
-		console.log(e.target.value);
-		return this.setState({currency: e.target.value})
+		return this.setState({currency: e.target.value});
 	}
 
 	render(){
 		return (
 			
 		      <div className='App'>
-		        <HeaderPanel />
-		        <Router>
-		        <Route exact path = '/' render = {props => (
-		        	<React.Fragment>
-		        		<div className='App-header'>
-			            <CustomTextBox label = {'Project Name'} handleOnChange = {this.handleOnChange}/>
-			            <CurrencyList currencyList = {currencyList} handleSelectOnChange = {this.handleSelectOnChange} />
-			            <CustomDatePicker label = {'Start Date'} handleDateChange = {this.handleDateChange}/>
-			            <Link to='/activity'>
-			            	<CustomButton label = {'Next'}/>
-			            </Link>
-		        		</div>
-		        	</React.Fragment>	
-		        )}/>
+		      	
+			        <HeaderPanel />
+			        <Router>
+			       
+			        <Route exact path = '/' render = {props => (
+
+			        	<React.Fragment>
+			        		<div className='App-header'>
+				            <CustomTextBox label = {'Project Name'} handleOnChange = {this.handleTextViewOnChange}/>
+				            <CustomList itemList = {currencyList} listLabel = {'Currency'}
+				            handleSelectOnChange = {this.handleSelectOnChange} />
+				            <CustomDatePicker label = {'Start Date'} handleDateChange = {this.handleDateChange}/>
+				            <Link to='/activity'>
+				            	<CustomButton label = {'Next'}/>
+				            </Link>
+			        		</div>
+			        	</React.Fragment>	
+			        )}/>
+			        
+
 		        <Route exact path = '/activity' component = {ActivityPage}/>
 		        </Router>
+		        
 		       </div>
 		      
 		);

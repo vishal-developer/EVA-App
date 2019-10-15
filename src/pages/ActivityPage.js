@@ -1,26 +1,22 @@
 import React from 'react';
 import '../App.css';
-import CustomTextBox from '../component/CustomTextBox';
 import CustomButton from '../component/CustomButton';
-import CustomDatePicker from '../component/CustomDatePicker';
 import CustomListItem from '../component/CustomListItem';
 import HeaderPanel from '../component/HeaderPanel';
 import ReportPanel from '../component/ReportPanel';
-// list
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+import CustomDatePicker from '../component/CustomDatePicker';
+import CustomTextBox from '../component/CustomTextBox';
+import CustomChart from '../component/CustomChart';
 
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 
 class ActivityPage extends React.Component {
 
 	state = {
 		itemList : [],
-		project : '',
-		currencyList : ['INR','USD']
 	}
-
-	
-	
 	
 	handleButtonClick = (e) => {
 		this.addItem();
@@ -39,7 +35,9 @@ class ActivityPage extends React.Component {
 				duration: 'Duration',
 				durationValue: '',
 				activityCost: 'Activity Cost',
-				activityCostValue: ''
+				activityCostValue: '',
+				activityType: ''
+
 			});
 			return {list};
 		});
@@ -96,35 +94,63 @@ class ActivityPage extends React.Component {
 		});
 	}
 
-	handleSelectOnChange = (e) => {
+	handleSelectOnChange = (e, item) => {
 		console.log(e.target.value);
+		this.setState( state => {
+			const list = state.itemList.map((listItem) =>{
+				if(listItem === item){
+					listItem.activityType = e.target.value;
+				}
+				return listItem;
+			});
+			return {list};
+		});
 	}
+
+	handleSingleDate = (e) => {
+		console.log(e);
+	}
+
 
 	render(){
 		return (
-			
-		      <div className='App'>
-		        <HeaderPanel />
-		        
-		       
-		        <List>
-		            <CustomListItem itemList = {this.state.itemList} 
-		            handleDelete = {this.handleDelete}
-		            handleOnChange = {this.handleOnChange}
-		            handleDateChange = {this.handleDateChange}/>
-		        </List>
-		        
-		        <div className="top-element-formatting">
+			<div className='App'>  
+	            <CustomListItem itemList = {this.state.itemList} 
+	            handleDelete = {this.handleDelete}
+	            handleOnChange = {this.handleOnChange}
+	            handleDateChange = {this.handleDateChange}
+	            handleSelectOnChange = {this.handleSelectOnChange}/>
+
 		        <CustomButton label = {'Add Activity'} clickHandle={this.handleButtonClick} />
-		        <span> </span>
-		        	<CustomButton label = {'Show Report '} clickHandle={this.showReport} />
-		        </div>
-		        <ReportPanel itemList = {this.state.itemList} />
-		      </div>
+		        
+		        <CustomButton label = {'Set Baseline'} clickHandle={this.showReport} />
+
+		         <CustomDatePicker label = {'Check Progress till date'} handleDateChange = {this.handleSingleDate}/>
+
+		         <CustomButton label = {'Check Progress'} clickHandle={this.showReport} />
+		        
+		         <ReportPanel itemList = {this.state.itemList} />
+		         <div className='Activity-panel'>	
+			         <CustomTextBox label = {'bcws'} handleOnChange = {this.handleTextViewOnChange}/>
+			         <CustomTextBox label = {'bcwp'} handleOnChange = {this.handleTextViewOnChange}/>
+			         <CustomTextBox label = {'acwp'} handleOnChange = {this.handleTextViewOnChange}/>
+			         <CustomTextBox label = {'cpi'} handleOnChange = {this.handleTextViewOnChange}/>
+			         <CustomTextBox label = {'cv'} handleOnChange = {this.handleTextViewOnChange}/>
+			         <CustomTextBox label = {'spi'} handleOnChange = {this.handleTextViewOnChange}/>
+			         <CustomTextBox label = {'sv'} handleOnChange = {this.handleTextViewOnChange}/>
+		         </div>
+		         <div className='Activity-panel'>	
+			         <CustomTextBox label = {'bcws'} handleOnChange = {this.handleTextViewOnChange}/>
+			         <CustomTextBox label = {'bcwp'} handleOnChange = {this.handleTextViewOnChange}/>
+			     </div>
+			     <CustomButton label = {'Display Chart'} clickHandle={this.showReport} />
+			     <CustomChart />
+			         
+		        
+	      	</div>
 		      
 		);
 	}
 }
-
 
 export default ActivityPage;

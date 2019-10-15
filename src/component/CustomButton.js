@@ -10,6 +10,7 @@ class CustomButton extends React.Component{
 	render(){
 		return (
 			<div>
+				<div> &nbsp;</div>
 			    <Button variant="contained" color="primary" onClick = {this.props.clickHandle}>
       				{this.props.label}
       			</Button>							
@@ -17,5 +18,6 @@ class CustomButton extends React.Component{
 		)
 	}
 }
+
 
 export default CustomButton;
