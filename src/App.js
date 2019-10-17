@@ -60,7 +60,7 @@ class App extends React.Component {
 					            <CustomList itemList = {currencyList} listLabel = {'Currency'}
 					            handleSelectOnChange = {this.handleSelectOnChange} />
 					            <CustomDatePicker label = {'Start Date'} handleDateChange = {this.handleDateChange}/>
-					            <Link to='/activity' projectData = {this.state}>
+					            <Link to='/activity' >
 					            	<CustomButton label = {'Next'} />
 					            </Link>
 				        		</div>
@@ -70,7 +70,9 @@ class App extends React.Component {
 			        )}/>
 			        
 
-		        <Route exact path = '/activity' component = {ActivityPage}/>
+		        <Route exact path = '/activity' 
+		        render = {(props) => <ActivityPage {...props} projectData = {this.state}/>} />
+		        
 		        </Router>
 		       
 		        

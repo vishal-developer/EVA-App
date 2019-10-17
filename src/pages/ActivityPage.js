@@ -16,7 +16,6 @@ class ActivityPage extends React.Component {
 	constructor(props){
 		super(props);
 		const projectData = props.projectData;
-		console.log('projectData :'+projectData);
 	}
 
 	state = {
@@ -167,7 +166,7 @@ class ActivityPage extends React.Component {
 	}	
 
 	setPlannedDuration = (item) => {
-		const plannedDurationDiff = this.getDateDifference(item.startDateValue, this.state.progressDate); 
+		const plannedDurationDiff = this.getDateDifference(this.props.projectData.startDate, this.state.progressDate); 
 		const duration = Math.round(plannedDurationDiff/(1000 * 3600 * 24))
 		return this.setState( state => {
 			const progressItem = state.progressList;
@@ -259,70 +258,86 @@ class ActivityPage extends React.Component {
 		});
 	}
 
+	
+
 
 	render(){
 		return (
-			<div className='App'>  
-	            <CustomListItem itemList = {this.state.itemList} 
-	            handleDelete = {this.handleDelete}
-	            handleOnChange = {this.handleOnChange}
-	            handleDateChange = {this.handleDateChange}
-	            handleSelectOnChange = {this.handleSelectOnChange}/>
+			<div className = 'App-header'>  
 
-		        <CustomButton label = {'Add Activity'} clickHandle={this.handleButtonClick} />
+				<Card style = {customListStyle}>
+					<div>Activity Info</div>
+		            <CustomListItem itemList = {this.state.itemList} 
+		            handleDelete = {this.handleDelete}
+		            handleOnChange = {this.handleOnChange}
+		            handleDateChange = {this.handleDateChange}
+		            handleSelectOnChange = {this.handleSelectOnChange}/>
+
+			        <CustomButton label = {'Add Activity'} clickHandle={this.handleButtonClick} />
+		        </Card>
 		        
-		        <div className='Activity-panel'>
-			         <CustomDatePicker label = {'Check Progress till date'} handleDateChange = {this.handleSingleDate}/>
-			         <CustomButton label = {'Process'} clickHandle={this.handleProcess} />	
-			         <CustomButton label = {'Check Progress'} clickHandle={this.handleCheckProgressClick} />
-		        </div>
-		         <div className='Activity-panel'>
-		         	<CustomTextBox label = {'Activity Name'} value = {this.state.progressList.activity}
-		         	handleOnChange = {this.handleTextViewOnChange}/>
-		         	<CustomTextBox label = {'Planned Duration'} value = {this.state.progressList.plannedDuration}
-		         	handleOnChange = {this.handleTextViewOnChange}/>
-		         	<CustomTextBox label = {'% Completed'} handleOnChange = {this.handleCompletedTextChange}/>
-		         	<CustomTextBox label = {'Actual Cost'} handleOnChange = {this.handleActualCostTextChange}/>
-		         	<CustomTextBox label = {'Actual Duration'} handleOnChange = {this.handleActualDurationTextChange}/>
-		         	<CustomTextBox label = {'Planned Cost'} value = {this.state.progressList.plannedCost} 
-		         	handleOnChange = {this.handleTextViewOnChange}/>	
-		         </div>
+		        <Card style = {progressPanelStyle}>
+		        	<div>Check Progess</div>
+		        	<div className = 'Activity-panel'>
+				         <CustomDatePicker label = {'Check Progress till date'} handleDateChange = {this.handleSingleDate}/>
+				         <CustomButton label = {'Process'} clickHandle={this.handleProcess} />	
+				         <CustomButton label = {'Check Progress'} clickHandle={this.handleCheckProgressClick} />     
+		        	</div>
+		        </Card>
+		        <Card style = {customListStyle}>
+		        	<div>Progess Info</div>
+			         <div className='Activity-panel'>
+			         	<CustomTextBox label = {'Activity Name'} value = {this.state.progressList.activity}
+			         	handleOnChange = {this.handleTextViewOnChange}/>
+			         	<CustomTextBox label = {'Planned Duration'} value = {this.state.progressList.plannedDuration}
+			         	handleOnChange = {this.handleTextViewOnChange}/>
+			         	<CustomTextBox label = {'% Completed'} handleOnChange = {this.handleCompletedTextChange}/>
+			         	<CustomTextBox label = {'Actual Cost'} handleOnChange = {this.handleActualCostTextChange}/>
+			         	<CustomTextBox label = {'Actual Duration'} handleOnChange = {this.handleActualDurationTextChange}/>
+			         	<CustomTextBox label = {'Planned Cost'} value = {this.state.progressList.plannedCost} 
+			         	handleOnChange = {this.handleTextViewOnChange}/>	
+			         </div>
+		         </Card>
 
 		         <CustomButton label = {'Find EVA Indicators'} clickHandle={this.findEvaIndicators} />
-		        
-		         <div className='Activity-panel'>	
+			        <Card style = {customListStyle}>
+			        	<div>EVA Indicators</div>
+				         <div className='Activity-panel'>	
 
-			         <CustomTextBox label = {'bcws'} 
-			         value = {this.state.bcws}
-			         handleOnChange = {this.handleTextViewOnChange}/>
+					         <CustomTextBox label = {'bcws'} 
+					         value = {this.state.bcws}
+					         handleOnChange = {this.handleTextViewOnChange}/>
 
-			         <CustomTextBox label = {'bcwp'} 
-			         value = {this.state.bcwp}
-			         handleOnChange = {this.handleTextViewOnChange}/>
+					         <CustomTextBox label = {'bcwp'} 
+					         value = {this.state.bcwp}
+					         handleOnChange = {this.handleTextViewOnChange}/>
 
-			         <CustomTextBox label = {'acwp'} 
-			         value = {this.state.acwp}
-			         handleOnChange = {this.handleTextViewOnChange}/>
+					         <CustomTextBox label = {'acwp'} 
+					         value = {this.state.acwp}
+					         handleOnChange = {this.handleTextViewOnChange}/>
 
-			         <CustomTextBox label = {'cpi'} 
-			         value = {this.state.cpi}
-			         handleOnChange = {this.handleTextViewOnChange}/>
+					         <CustomTextBox label = {'cpi'} 
+					         value = {this.state.cpi}
+					         handleOnChange = {this.handleTextViewOnChange}/>
 
-			         <CustomTextBox label = {'cv'} 
-			         value = {this.state.cv}
-			         handleOnChange = {this.handleTextViewOnChange}/>
+					         <CustomTextBox label = {'cv'} 
+					         value = {this.state.cv}
+					         handleOnChange = {this.handleTextViewOnChange}/>
 
-			         <CustomTextBox label = {'spi'} 
-			         value = {this.state.spi}
-			         handleOnChange = {this.handleTextViewOnChange}/>
+					         <CustomTextBox label = {'spi'} 
+					         value = {this.state.spi}
+					         handleOnChange = {this.handleTextViewOnChange}/>
 
-			         <CustomTextBox label = {'sv'} 
-			         value = {this.state.sv}
-			         handleOnChange = {this.handleTextViewOnChange}/>
+					         <CustomTextBox label = {'sv'} 
+					         value = {this.state.sv}
+					         handleOnChange = {this.handleTextViewOnChange}/>
 
-		         </div>
+				         </div>
+			         </Card>
 			     <CustomButton label = {'Display Chart'} clickHandle={this.showReport} />
-			     <CustomChart />
+			     <Card style = {customListStyle}>
+			     	<CustomChart />
+			     </Card>
 			         
 		        
 	      	</div>
@@ -330,5 +345,22 @@ class ActivityPage extends React.Component {
 		);
 	}
 }
+
+const customListStyle = {
+	    display: 'inline-block',
+		maxWidth: '1250px',
+		padding: '10px 10px 10px 10px',
+		justifyContent: 'space-around'
+}
+
+const progressPanelStyle = {
+	    display: 'inline-block',
+		maxWidth: '550px',
+		padding: '10px 10px 10px 10px',
+		justifyContent: 'space-around',
+		alignItems: 'center'
+}
+
+
 
 export default ActivityPage;

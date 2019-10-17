@@ -3,7 +3,7 @@ import './../App.css';
 import CustomTextBox from './CustomTextBox';
 import CustomDatePicker from './CustomDatePicker';
 import CustomButton from './CustomButton'
-import CustomList from './CustomList'
+// import CustomList from './CustomList'
 
 class CustomListItem extends React.Component{
 
@@ -11,11 +11,7 @@ class CustomListItem extends React.Component{
 		return this.props.itemList.map(item =>(
 			<div className='Activity-panel'>
 
-                  <CustomList itemList = {activityTypeList} 
-                  listLabel = {'Activity Type'} 
-                  handleSelectOnChange = {(e) => this.props.handleSelectOnChange(e, item)} />
-
-            	<CustomTextBox label = {item.activityName}
+            	<CustomTextBox styel= {itemStyle} label = {item.activityName}
                   value = {item.activityValue}
             	handleOnChange = {(e) => this.props.handleOnChange(e, item, item.activityName)}/>
 
@@ -35,6 +31,11 @@ class CustomListItem extends React.Component{
             </div>
 		))
 	}
+}
+
+const itemStyle = {
+      margin: '10px 10px 10px 10px',
+      border: '1px'
 }
 
 const activityTypeList = ['Months', 'Days']
