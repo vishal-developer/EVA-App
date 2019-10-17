@@ -12,10 +12,11 @@ class CustomListItem extends React.Component{
 			<div className='Activity-panel'>
 
                   <CustomList itemList = {activityTypeList} 
-                  listLabel = {'Activity Type'}
+                  listLabel = {'Activity Type'} 
                   handleSelectOnChange = {(e) => this.props.handleSelectOnChange(e, item)} />
 
             	<CustomTextBox label = {item.activityName}
+                  value = {item.activityValue}
             	handleOnChange = {(e) => this.props.handleOnChange(e, item, item.activityName)}/>
 
             	<CustomDatePicker label = {item.startDate} 
@@ -23,10 +24,10 @@ class CustomListItem extends React.Component{
             	<CustomDatePicker label = {item.endDate} 
             	handleDateChange = {(e) => this.props.handleDateChange(e, item, item.endDate)}/>
             	
-            	<CustomTextBox label = {item.duration} 
+            	<CustomTextBox label = {item.duration} value = {item.durationValue}
             	handleOnChange = {(e) => this.props.handleOnChange(e, item, item.duration)}/>
             	
-            	<CustomTextBox label = {item.activityCost} 
+            	<CustomTextBox label = {item.activityCost} value = {item.activityCostValue}
             	handleOnChange = {(e) => this.props.handleOnChange(e, item, item.activityCost)}/>
 
             	<CustomButton label = {'Delete'} justify="space-around" 

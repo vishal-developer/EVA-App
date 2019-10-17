@@ -8,6 +8,16 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 class ReportPanel extends React.Component{
+
+
+	/*progressList: {
+			activity: '',
+			plannedDuration: 0,
+			completed: '',
+			actualCost: '',
+			actualDuration: '',
+			plannedCost: 0
+		},*/
 	render(){
 		return (
 			<Paper>
@@ -15,23 +25,23 @@ class ReportPanel extends React.Component{
 		        <TableHead>
 		          <TableRow>
 		            <TableCell>{"ActivityName"}</TableCell>
-		            <TableCell align="right">{"StartDate"}</TableCell>
-		            <TableCell align="right">{"EndDate"}</TableCell>
-		            <TableCell align="right">{"Duration"}</TableCell>
-		            <TableCell align="right">{"ActivityCost"}</TableCell>
+		            <TableCell align="right">{"Planned Duration"}</TableCell>
+		            <TableCell align="right">{"% Completed"}</TableCell>
+		            <TableCell align="right">{"Actual Cost"}</TableCell>
+		            <TableCell align="right">{"Actual Duration"}</TableCell>
+		            <TableCell align="right">{"Planned Cost"}</TableCell>
 		          </TableRow>
 		        </TableHead>
 		        <TableBody>
 		        {
-		        	this.props.itemList.map(item => (
-		        		<TableRow >
-			              <TableCell>{item.activityValue}</TableCell>
-			              <TableCell align="right">{item.startDateValue}</TableCell>
-			              <TableCell align="right">{item.endDateValue}</TableCell>
-			              <TableCell align="right">{item.durationValue}</TableCell>
-			              <TableCell align="right">{item.activityCostValue}</TableCell>
-			            </TableRow>  
-		        	))
+		        	<TableRow >
+		              <TableCell align="center">{this.props.item.activity}</TableCell>
+		              <TableCell align="center">{this.props.item.plannedDuration}</TableCell>
+		              <TableCell align="center">{this.props.item.completed}</TableCell>
+		              <TableCell align="center">{this.props.item.actualCost}</TableCell>
+		              <TableCell align="center">{this.props.item.actualDuration}</TableCell>
+		              <TableCell align="center">{this.props.item.plannedCost}</TableCell>
+		            </TableRow>  
 		        }	
 				</TableBody>
 			      </Table>

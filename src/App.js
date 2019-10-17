@@ -21,7 +21,7 @@ class App extends React.Component {
 	state = {
 		project : '',
 		currency : '',
-		startDate: ''
+		startDate: new Date().toString()
 	}
 
 	
@@ -46,28 +46,33 @@ class App extends React.Component {
 		return (
 			
 		      <div className='App'>
-		      	
+
+		      		
 			        <HeaderPanel />
 			        <Router>
 			       
 			        <Route exact path = '/' render = {props => (
-
-			        	<React.Fragment>
-			        		<div className='App-header'>
-				            <CustomTextBox label = {'Project Name'} handleOnChange = {this.handleTextViewOnChange}/>
-				            <CustomList itemList = {currencyList} listLabel = {'Currency'}
-				            handleSelectOnChange = {this.handleSelectOnChange} />
-				            <CustomDatePicker label = {'Start Date'} handleDateChange = {this.handleDateChange}/>
-				            <Link to='/activity'>
-				            	<CustomButton label = {'Next'}/>
-				            </Link>
-			        		</div>
-			        	</React.Fragment>	
+			        	<div style = {topPanelStyle}>
+		      			<Card style = {cardStyle}>
+				        	<React.Fragment>
+				        		<div className='App-header'>
+					            <CustomTextBox label = {'Project Name'} handleOnChange = {this.handleTextViewOnChange}/>
+					            <CustomList itemList = {currencyList} listLabel = {'Currency'}
+					            handleSelectOnChange = {this.handleSelectOnChange} />
+					            <CustomDatePicker label = {'Start Date'} handleDateChange = {this.handleDateChange}/>
+					            <Link to='/activity' projectData = {this.state}>
+					            	<CustomButton label = {'Next'} />
+					            </Link>
+				        		</div>
+				        	</React.Fragment>	
+			        	</Card>
+		        		</div>
 			        )}/>
 			        
 
 		        <Route exact path = '/activity' component = {ActivityPage}/>
 		        </Router>
+		       
 		        
 		       </div>
 		      
@@ -75,5 +80,15 @@ class App extends React.Component {
 	}
 }
 const currencyList = ['INR','USD'];
+
+const cardStyle = {
+	maxWidth: '400px',
+	maxHeight: '400px'
+}
+
+const topPanelStyle = {
+	textAlign: 'center',
+	display: 'inline-block'
+}
 
 export default App;
