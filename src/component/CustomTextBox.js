@@ -20,7 +20,7 @@ class CustomTextBox extends React.Component{
 	render(){
 
 		return (
-			<div>
+			<div style = {textFieldStyle}>
 			    <TextField
 			        id="projectName"
 			        label= {this.props.label}
@@ -32,5 +32,10 @@ class CustomTextBox extends React.Component{
 		)
 	}
 }
+
+const textFieldStyle = {
+	margin: '10px'
+}
+
   
 export default CustomTextBox;

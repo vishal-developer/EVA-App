@@ -21,7 +21,7 @@ class CustomDatePicker extends React.Component{
 	
 	render(){
 		return (
-			<div>
+			<div style = {datePicketStyle}>
    				<MuiPickersUtilsProvider utils={DateFnsUtils}>
       				<Grid container  justify="space-around">
    						<KeyboardDatePicker
@@ -40,5 +40,8 @@ class CustomDatePicker extends React.Component{
 			</div>
 		)
 	}
+}
+const datePicketStyle = {
+	margin: '10px'
 }
 export default CustomDatePicker;

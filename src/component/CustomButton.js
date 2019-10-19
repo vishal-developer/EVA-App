@@ -10,8 +10,7 @@ class CustomButton extends React.Component{
 	render(){
 		return (
 			<div>
-				<div> &nbsp;</div>
-			    <Button variant="contained" color="primary" onClick = {this.props.clickHandle}>
+			    <Button style = {buttonStyle} variant="contained" color="primary" onClick = {this.props.clickHandle}>
       				{this.props.label}
       			</Button>							
 			</div>
@@ -19,5 +18,8 @@ class CustomButton extends React.Component{
 	}
 }
 
+const buttonStyle = {
+	margin: '10px'
+}
 
 export default CustomButton;

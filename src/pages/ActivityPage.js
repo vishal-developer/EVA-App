@@ -263,7 +263,7 @@ class ActivityPage extends React.Component {
 
 	render(){
 		return (
-			<div className = 'App-header'>  
+			<div className = 'activityLayout'>  
 
 				<Card style = {customListStyle}>
 					<div>Activity Info</div>
@@ -278,10 +278,12 @@ class ActivityPage extends React.Component {
 		        
 		        <Card style = {progressPanelStyle}>
 		        	<div>Check Progess</div>
-		        	<div className = 'Activity-panel'>
-				         <CustomDatePicker label = {'Check Progress till date'} handleDateChange = {this.handleSingleDate}/>
-				         <CustomButton label = {'Process'} clickHandle={this.handleProcess} />	
-				         <CustomButton label = {'Check Progress'} clickHandle={this.handleCheckProgressClick} />     
+		        	<div style = {{maxWidth: '600px', display: 'inline-block'}}>
+			        	<div className = 'Activity-panel'>
+					         <CustomDatePicker label = {'Check Progress till date'} handleDateChange = {this.handleSingleDate}/>
+					         <CustomButton label = {'Process'} clickHandle={this.handleProcess} />	
+					         <CustomButton label = {'Check Progress'} clickHandle={this.handleCheckProgressClick} />     
+			        	</div>
 		        	</div>
 		        </Card>
 		        <Card style = {customListStyle}>
@@ -299,8 +301,8 @@ class ActivityPage extends React.Component {
 			         </div>
 		         </Card>
 
-		         <CustomButton label = {'Find EVA Indicators'} clickHandle={this.findEvaIndicators} />
-			        <Card style = {customListStyle}>
+		         <CustomButton style = {{maxWidth: '600px', display: 'inline-block'}} label = {'Find EVA Indicators'} clickHandle={this.findEvaIndicators} />
+			        <Card style = {evaIndicatorStyle}>
 			        	<div>EVA Indicators</div>
 				         <div className='Activity-panel'>	
 
@@ -335,8 +337,10 @@ class ActivityPage extends React.Component {
 				         </div>
 			         </Card>
 			     <CustomButton label = {'Display Chart'} clickHandle={this.showReport} />
-			     <Card style = {customListStyle}>
-			     	<CustomChart />
+			     <Card style = {evaIndicatorStyle}>
+			     	<div style = {{width: '300px', height: '100%',display: 'inline-block'}}>
+			     		<CustomChart />
+			     	</div>
 			     </Card>
 			         
 		        
@@ -347,15 +351,33 @@ class ActivityPage extends React.Component {
 }
 
 const customListStyle = {
+		marginTop: '10px',
 	    display: 'inline-block',
 		maxWidth: '1250px',
 		padding: '10px 10px 10px 10px',
 		justifyContent: 'space-around'
 }
 
-const progressPanelStyle = {
+const evaIndicatorStyle = {
 	    display: 'inline-block',
-		maxWidth: '550px',
+	    maxWidth: '1250px',
+		padding: '10px 10px 10px 10px',
+		justifyContent: 'space-around',
+		alignItems: 'center'
+}
+const progressPanelStyle = {
+		marginTop: '10px',
+	    display: 'inline-block',
+		maxWidth: '1250px',
+		padding: '10px 10px 10px 10px',
+		justifyContent: 'space-around',
+		alignItems: 'center'
+}
+
+const activityLayout = {
+		marginTop: '10px',
+	    display: 'inline-block',
+		maxWidth: '1250px',
 		padding: '10px 10px 10px 10px',
 		justifyContent: 'space-around',
 		alignItems: 'center'
