@@ -156,8 +156,8 @@ class ActivityPage extends React.Component {
 		
 	}
 
-	updatePlannedCost = (item) => {
-		var plannedCost = (this.state.progressList.plannedDuration / item.durationValue) * item.activityCostValue;
+	updatePlannedCost = () => {
+		var plannedCost = (this.state.progressList.plannedDuration / this.getTotalDuration()) * this.getTotalActivityCost();
 		this.setState(state => {
 			const progressItem = state.progressList;
 			progressItem.plannedCost = plannedCost;
@@ -165,9 +165,27 @@ class ActivityPage extends React.Component {
 		} );
 	}	
 
-	setPlannedDuration = (item) => {
-		const plannedDurationDiff = this.getDateDifference(this.props.projectData.startDate, this.state.progressDate); 
-		const duration = Math.round(plannedDurationDiff/(1000 * 3600 * 24))
+	getTotalDuration = () => {
+		var duration = 0;
+		this.state.itemList.forEach(item => {
+			duration += item.durationValue;
+		});
+		return duration;
+	}
+
+	getTotalActivityCost = () => {
+		var cost = 0;
+		this.state.itemList.forEach(item => {
+			cost += parseInt(item.activityCostValue);
+		});
+		return cost;
+	}
+
+	setPlannedDuration = (e) => {
+		var duration = 0;
+		this.state.itemList.forEach(item => {
+			duration += this.getPlannedDuration(item);
+		});
 		return this.setState( state => {
 			const progressItem = state.progressList;
 			progressItem.plannedDuration = duration;
@@ -175,14 +193,17 @@ class ActivityPage extends React.Component {
 		});
 	}
 
+	getPlannedDuration = (item) => {
+		const plannedDurationDiff = this.getDateDifference(this.props.projectData.startDate, this.state.progressDate); 
+		return Math.round(plannedDurationDiff/(1000 * 3600 * 24))
+	}
+
 	handleProcess = (e) => {
-		const item = this.state.itemList[0];
-		this.setPlannedDuration(item);
+		this.setPlannedDuration();
 	}
 
 	handleCheckProgressClick = (e) => {
-		const item = this.state.itemList[0];
-		this.updatePlannedCost(item);
+		this.updatePlannedCost();
 	}
 
 	findEvaIndicators = (e) => {
@@ -289,8 +310,6 @@ class ActivityPage extends React.Component {
 		        <Card style = {customListStyle}>
 		        	<div>Progess Info</div>
 			         <div className='Activity-panel'>
-			         	<CustomTextBox label = {'Activity Name'} value = {this.state.progressList.activity}
-			         	handleOnChange = {this.handleTextViewOnChange}/>
 			         	<CustomTextBox label = {'Planned Duration'} value = {this.state.progressList.plannedDuration}
 			         	handleOnChange = {this.handleTextViewOnChange}/>
 			         	<CustomTextBox label = {'% Completed'} handleOnChange = {this.handleCompletedTextChange}/>
@@ -339,7 +358,7 @@ class ActivityPage extends React.Component {
 			     <CustomButton label = {'Display Chart'} clickHandle={this.showReport} />
 			     <Card style = {evaIndicatorStyle}>
 			     	<div style = {{width: '300px', height: '100%',display: 'inline-block'}}>
-			     		<CustomChart />
+			     		<CustomChart chartData = {this.state}/>
 			     	</div>
 			     </Card>
 			         
