@@ -15,8 +15,13 @@ class CustomDatePicker extends React.Component{
 	}
 
 	handleDateChange = (e) => {
-		this.props.handleDateChange(e);
-		return this.setState({selectedDate: e});
+		const date = new Date(this.getFormattedDate(e));
+		this.props.handleDateChange(date);
+		return this.setState({selectedDate: date});
+  	}
+
+  	getFormattedDate = (date) => {
+  		return + date.getFullYear()+ "-" + (date.getMonth() + 1)+"-"+date.getDate();
   	}
 	
 	render(){
@@ -27,7 +32,7 @@ class CustomDatePicker extends React.Component{
    						<KeyboardDatePicker
 				          disableToolbar
 				          variant="normal"
-				          format="MM/dd/yyyy"
+				          format="dd/MM/yyyy"
 				          margin="normal"
 				          value = {this.state.selectedDate}
 				          onChange = {this.handleDateChange}

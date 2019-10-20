@@ -24,11 +24,11 @@ class ActivityPage extends React.Component {
 				activityName: 'Activity Name',
 				activityValue: '',
 				startDate: 'Start Date',
-				startDateValue: new Date().toString(),
+				startDateValue: new Date(),
 				endDate: 'End Date',
 				endDateValue: new Date().toString(),
 				duration: 'Duration(Days)',
-				durationValue: 0,
+				durationValue: 1,
 				activityCost: 'Activity Cost',
 				activityCostValue: 0,
 				activityType: ''
@@ -123,7 +123,7 @@ class ActivityPage extends React.Component {
 					const duration = this.getDateDifference(listItem.startDateValue,
 						listItem.endDateValue);
 					
-					listItem.durationValue = Math.round(duration/(1000 * 3600 * 24));
+					listItem.durationValue = Math.round(duration/(1000 * 3600 * 24)) + 2;
 				}
 
 				return listItem;
@@ -184,7 +184,7 @@ class ActivityPage extends React.Component {
 	setPlannedDuration = (e) => {
 		var duration = 0;
 		this.state.itemList.forEach(item => {
-			duration += this.getPlannedDuration(item);
+			duration += item.durationValue;
 		});
 		return this.setState( state => {
 			const progressItem = state.progressList;
@@ -279,9 +279,6 @@ class ActivityPage extends React.Component {
 		});
 	}
 
-	
-
-
 	render(){
 		return (
 			<div className = 'activityLayout'>  
@@ -307,8 +304,12 @@ class ActivityPage extends React.Component {
 			        	</div>
 		        	</div>
 		        </Card>
+
 		        <Card style = {customListStyle}>
 		        	<div>Progess Info</div>
+		        	{
+
+		        	}
 			         <div className='Activity-panel'>
 			         	<CustomTextBox label = {'Planned Duration'} value = {this.state.progressList.plannedDuration}
 			         	handleOnChange = {this.handleTextViewOnChange}/>

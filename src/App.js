@@ -45,13 +45,10 @@ class App extends React.Component {
 	render(){
 		return (
 			
-		      <div className='App'>
-
-		      		
-			        <HeaderPanel />
-			        <Router>
-			       
-			        <Route exact path = '/' render = {props => (
+		      <div className='App'>		      		
+			  	<HeaderPanel />
+		    	<Router>
+			        <Route exact path = '/EVA-App' render = {props => (
 			        	<div style = {topPanelStyle}>
 		      			<Card style = {cardStyle}>
 				        	<React.Fragment>
@@ -60,7 +57,7 @@ class App extends React.Component {
 					            <CustomList itemList = {currencyList} listLabel = {'Currency'}
 					            handleSelectOnChange = {this.handleSelectOnChange} />
 					            <CustomDatePicker label = {'Start Date'} handleDateChange = {this.handleDateChange}/>
-					            <Link to='/activity' >
+					            <Link to='/EVA-App/activity' >
 					            	<CustomButton label = {'Next'} />
 					            </Link>
 				        		</div>
@@ -68,15 +65,10 @@ class App extends React.Component {
 			        	</Card>
 		        		</div>
 			        )}/>
-			        
-
-		        <Route exact path = '/activity' 
-		        render = {(props) => <ActivityPage {...props} projectData = {this.state}/>} />
-		        
-		        </Router>
-		       
-		        
-		       </div>
+		        	<Route exact path = '/EVA-App/activity' 
+		        		render = {(props) => <ActivityPage {...props} projectData = {this.state}/>} />
+	        	</Router>		        
+		      </div>
 		      
 		);
 	}
