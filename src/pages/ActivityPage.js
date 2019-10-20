@@ -295,7 +295,7 @@ class ActivityPage extends React.Component {
 		        </Card>
 		        
 		        <Card style = {progressPanelStyle}>
-		        	<div>Check Progess</div>
+		        	<div>Check Progress</div>
 		        	<div style = {{maxWidth: '600px', display: 'inline-block'}}>
 			        	<div className = 'Activity-panel'>
 					         <CustomDatePicker label = {'Check Progress till date'} handleDateChange = {this.handleSingleDate}/>
@@ -306,10 +306,7 @@ class ActivityPage extends React.Component {
 		        </Card>
 
 		        <Card style = {customListStyle}>
-		        	<div>Progess Info</div>
-		        	{
-
-		        	}
+		        	<div>Progress Info</div>
 			         <div className='Activity-panel'>
 			         	<CustomTextBox label = {'Planned Duration'} value = {this.state.progressList.plannedDuration}
 			         	handleOnChange = {this.handleTextViewOnChange}/>
